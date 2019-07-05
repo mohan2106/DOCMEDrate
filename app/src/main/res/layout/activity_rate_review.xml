@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hey User how was your experience with your Doctor"/>
             <TextView
+                android:id="@+id/drName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Would you recommend other patients to consult with Dr. Prithvi Sriram?"

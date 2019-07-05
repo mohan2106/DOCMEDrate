@@ -48,7 +48,7 @@ public class RateReview extends AppCompatActivity {
     private Button btn;
     private String formattedDate;
     private int con;
-
+    private TextView drName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +56,12 @@ public class RateReview extends AppCompatActivity {
 
         Intent in=getIntent();
         final String id=in.getStringExtra("id");
+        final String nm=in.getStringExtra("name");
         //final String bookingId=in.getStringExtra("bookingId");
         btn=(Button)findViewById(R.id.submit_review);
         review=(EditText)findViewById(R.id.review_text);
+        drName=findViewById(R.id.drName);
+        drName.setText("Would you recommend other patients to consult with "+nm+"?");
         smileRating=(SmileRating)findViewById(R.id.smile_rating);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
