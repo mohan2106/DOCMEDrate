@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,7 +67,7 @@ public class SearchDoctor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_doctor);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         search_et=(EditText)findViewById(R.id.search_et);
         book_appointment=this;
         city_view=(TextView)findViewById(R.id.city_view);
@@ -78,7 +79,7 @@ public class SearchDoctor extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Doctors");
         Intent i=getIntent();
-        final String tv=i.getStringExtra("City_name");
+        City=i.getStringExtra("City_name");
 
         search_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -117,40 +118,8 @@ public class SearchDoctor extends AppCompatActivity {
         itemList=new ArrayList<>();
         adapter=new doctor_adapter(itemList,this);
         recyclerView.setAdapter(adapter);
+        itemList.clear();
 
-        mDatabase.child("0").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Map<String , Object> map = (Map<String , Object>) child.getValue();
-                    String name = (String) map.get("name");
-                    String category = (String) map.get("description_0");
-                    String city = (String) map.get("description_1");
-                    itemList.add(new doctor_details_class(name,city,category));
-
-                    /*ArrayListClass_product_item_firebase retailers=new ArrayListClass_product_item_firebase();
-                    for(DataSnapshot child1 : dataSnapshot.child("Pricing Details").child("myList").getChildren())
-                    {
-                        Map<String , Object> map1 = (Map<String , Object>) child1.getValue();
-                        float item_price = (Float) map1.get("price");
-                        String item_retailername = (String) map1.get("retailername");
-                        int item_stock = (Integer) map1.get("stock");
-                        product_item_firebase item=new product_item_firebase(item_retailername,item_price,item_stock);
-                        retailers.myList.add(item);
-                    }
-                    ArrayList<String> desc_value=new ArrayList<>();
-                    desc_value.add(os);desc_value.add(RAM);desc_value.add(ROM);desc_value.add(size);
-                    product_item product_item=new product_item(name,image,desc_key,desc_value,retailers);
-                    item_list.add(product_item);*/
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                bar.dismiss();
-                Toast.makeText(SearchDoctor.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         /*firebaseFirestore.collection("Doctors").document("India").collection("Guwahati").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -173,6 +142,36 @@ public class SearchDoctor extends AppCompatActivity {
             }
         });*/
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mDatabase.child("doctors").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i=0;
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    i++;
+                    Map<String , Object> map = (Map<String , Object>) child.getValue();
+                    String name = (String) map.get("name");
+                    String category = (String) map.get("description_0");
+                    String city = (String) map.get("description_1");
+                    if(TextUtils.equals(city,City)){
+                        itemList.add(new doctor_details_class(name,city,category));
+                    }
+
+                }
+                bar.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                bar.dismiss();
+                Toast.makeText(SearchDoctor.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void filter(String text) {
         List<doctor_details_class> filteredList = new ArrayList<>();
 

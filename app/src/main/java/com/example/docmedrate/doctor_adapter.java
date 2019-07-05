@@ -54,23 +54,15 @@ public class doctor_adapter extends RecyclerView.Adapter<doctor_adapter.ViewHold
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-                /*Intent intent=new Intent(context,Doctor_profile.class);
-                intent.putExtra("name",name);
-                intent.putExtra("fee",fee);
-                intent.putExtra("address",address);
-                intent.putExtra("experience",experience);
-                intent.putExtra("speciality",Speciality);
-                intent.putExtra("image",image);
-                intent.putExtra("lat",String.valueOf(loc.getLatitude()));
-                intent.putExtra("long",String.valueOf(loc.getLongitude()));
-                intent.putExtra("id",id);
+                Intent intent=new Intent(context,RateReview.class);
+
                 //intent.putExtra("location",model);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity)BookAppointment.act).toBundle());
+                    context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity)SearchDoctor.act).toBundle());
                 }
                 else{
                     context.startActivity(intent);
-                }*/
+                }
             }
         });
         final String nm=ne.getName();
@@ -93,7 +85,7 @@ public class doctor_adapter extends RecyclerView.Adapter<doctor_adapter.ViewHold
             speciality=(TextView)itemView.findViewById(R.id.doctor_speciality);
             experience=(TextView)itemView.findViewById(R.id.doctor_experience);
             address=(TextView)itemView.findViewById(R.id.doctor_location);
-            fee=(TextView)itemView.findViewById(R.id.doctor_fee);
+            //fee=(TextView)itemView.findViewById(R.id.doctor_fee);
             consult_btn=(Button)itemView.findViewById(R.id.doctor_consult);
             location=(ImageView)itemView.findViewById(R.id.doctor_map);
         }
