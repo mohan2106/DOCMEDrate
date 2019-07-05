@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "81371231789",
+    "firebase_url": "https://docmedrate.firebaseio.com",
+    "project_id": "docmedrate",
+    "storage_bucket": "docmedrate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81371231789:android:fafa827b96774439",
+        "android_client_info": {
+          "package_name": "com.example.docmedrate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81371231789-miqetjb0m970hpttl34rjnf8q2rp12v3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.docmedrate",
+            "certificate_hash": "3838d55a8ed9aa89f8a51a997a8450a91964a716"
+          }
+        },
+        {
+          "client_id": "81371231789-f7urk6p3q6bf9r1ln22qb43t5cspntqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyLU8KXkwnaiDpGbKrYWBnoE_PG08uevA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81371231789-f7urk6p3q6bf9r1ln22qb43t5cspntqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
