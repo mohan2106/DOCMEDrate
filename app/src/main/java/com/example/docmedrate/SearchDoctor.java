@@ -61,6 +61,7 @@ public class SearchDoctor extends AppCompatActivity {
     private ProgressDialog bar;
     private Button sel_city,category;
     public static Activity act;
+    private int i=0;
     private DatabaseReference mDatabase;
 
     @Override
@@ -149,7 +150,6 @@ public class SearchDoctor extends AppCompatActivity {
         mDatabase.child("doctors").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i=0;
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     i++;
                     Map<String , Object> map = (Map<String , Object>) child.getValue();
@@ -157,7 +157,7 @@ public class SearchDoctor extends AppCompatActivity {
                     String category = (String) map.get("description_0");
                     String city = (String) map.get("description_1");
                     if(TextUtils.equals(city,City)){
-                        itemList.add(new doctor_details_class(name,city,category));
+                        itemList.add(new doctor_details_class(name,city,category,String.valueOf(i)));
                     }
 
                 }

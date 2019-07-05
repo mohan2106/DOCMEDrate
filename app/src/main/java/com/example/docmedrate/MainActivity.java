@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         img=(ImageView)findViewById(R.id.imageView7);
         tv1=(TextView)findViewById(R.id.textView3);
         title=(TextView)findViewById(R.id.search_title);
-        title.setText(search_head);
         tv2=(TextView)findViewById(R.id.textView9);
         editText=(EditText)findViewById(R.id.search_text);
         search_btn=(ImageView)findViewById(R.id.search_icon);

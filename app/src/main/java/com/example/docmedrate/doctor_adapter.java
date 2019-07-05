@@ -45,6 +45,7 @@ public class doctor_adapter extends RecyclerView.Adapter<doctor_adapter.ViewHold
         final String name=ne.getName();
         final String address=ne.getAddress();
         final String Speciality=ne.getSpeciality();
+        final String id=ne.getId();
         //final com.lenovo.doc.Model model=new com.lenovo.doc.Model();
         //model.setGeoPoint(ne.getLocation());
         viewHolder.name.setText(ne.getName());
@@ -54,8 +55,11 @@ public class doctor_adapter extends RecyclerView.Adapter<doctor_adapter.ViewHold
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(context,RateReview.class);
-
+                Intent intent=new Intent(context,profileActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("name",name);
+                intent.putExtra("address",address);
+                intent.putExtra("speciality",Speciality);
                 //intent.putExtra("location",model);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity)SearchDoctor.act).toBundle());
